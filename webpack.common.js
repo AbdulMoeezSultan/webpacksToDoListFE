@@ -1,4 +1,3 @@
-// webpack.config.js
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
@@ -11,7 +10,7 @@ export default {
   entry: './src/main.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].[contenthash].js',
     clean: true,
   },
   resolve: {
@@ -32,19 +31,16 @@ export default {
         test: /\.(png|jpe?g|gif|webp|svg)$/i,
         type: 'asset/resource',
       },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
+      title: 'Caching',
     }),
   ],
-  devServer: {
-    static: './dist',
-    port: 3000,
-    open: true,
-    hot: true,
-    liveReload: true,
-  },
-  mode: 'development',
 }
