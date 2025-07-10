@@ -71,10 +71,10 @@ const ToDoList = ({ tasks, dispatch }: PropsType) => {
         <>
           {tasks.length > 0 ? (
             <div className="flex flex-col flex-wrap gap-5 justify-center items-center">
-              {tasks.map((t) => (
+              {tasks.map((t, index) => (
                 <div
                   className="flex justify-between items-center w-[95%] lg:w-[75%] border border-bordercolor p-5 text-3xl rounded-xl"
-                  key={t.id}
+                  key={index}
                 >
                   <div
                     className={`mr-10 lg:mr-7 text-justify break-all ${t.status ? 'line-through' : 'no-underline'}`}

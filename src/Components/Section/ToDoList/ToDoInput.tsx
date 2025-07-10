@@ -30,11 +30,15 @@ const ToDoInput = ({ tasks, dispatch, setToggler }: PropsType) => {
       setInputError({ message: 'Task already exist', status: true })
       return
     }
-    dispatch({ type: 'ADD_TASK', payload: newTask })
-    await axios.post('/api/insert', {
+    const result = await axios.post('/api/insert', {
       myTask: newTask.myTask,
       status: newTask.status,
     })
+    const returnedId = result.data.id[0].create_task
+    const updatedTask = { id: returnedId, ...newTask }
+    setNewTask(updatedTask)
+    console.log(updatedTask)
+    dispatch({ type: 'ADD_TASK', payload: updatedTask })
     setNewTask({ myTask: '', status: false })
     setInputError({ message: '', status: false })
     setToggler(false)

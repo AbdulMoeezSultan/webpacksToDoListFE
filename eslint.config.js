@@ -1,3 +1,6 @@
+// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+import storybook from "eslint-plugin-storybook";
+
 import tseslint from 'typescript-eslint'
 import pluginReact from 'eslint-plugin-react'
 import { default as pluginPrettierRecommended } from 'eslint-plugin-prettier/recommended'
@@ -13,6 +16,7 @@ export default defineConfig([
       ...pluginReact.configs.recommended.rules,
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
+      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       quotes: ['error', 'single', { avoidEscape: true }],
     },
     settings: {
